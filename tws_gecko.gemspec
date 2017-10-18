@@ -9,7 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ["asd456fgh7789"]
   spec.email         = ["asd456fgh7789ss@gmail.com"]
 
-  spec.summary       = %q{"抓取台灣股市資料"}
+  spec.summary       = %q{"台股壁虎"}
+  spec.description   = <<-DESCRIPTION
+TODO
+
+
+  DESCRIPTION
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
