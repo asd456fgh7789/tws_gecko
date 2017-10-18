@@ -11,7 +11,6 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{"台股壁虎"}
   spec.description   = <<-DESCRIPTION
-TODO
 
 
   DESCRIPTION
