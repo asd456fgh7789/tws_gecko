@@ -1,7 +1,6 @@
 require 'tws_gecko/file'
-require 'date'
 
-module TwsGecko::TradeDate
+module TwsGecko::Date
   extend TwsGecko::File
 
   def self.open?(date)
@@ -14,6 +13,11 @@ module TwsGecko::TradeDate
     else
       date.wday % 6 != 0
     end
+  end
+
+  def self.today
+    t = TwsGecko::Time.now
+    Date.parse(t.to_s)
   end
 
   class << self
