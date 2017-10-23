@@ -2,7 +2,7 @@ require 'tws_gecko/crawler'
 require 'tws_gecko/log'
 require 'tws_gecko/log'
 
-class TwsGecko::Mi_Index
+class TwsGecko::MiIndex
   include TwsGecko::Crawler
   include TwsGecko::File
 
