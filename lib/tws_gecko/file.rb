@@ -2,7 +2,7 @@ module TwsGecko::File
   STATDIR = 'static/'.freeze
   RAWDIR = 'static/raw/'.freeze
   DATADIR = 'data/'.freeze
-  HISDIR = 'data/'.freeze
+  HISDIR = 'data/history'.freeze
 
   LOGFILE ||= 'tws_gecko.log'.freeze
   def file_check(filepath)
