@@ -25,7 +25,7 @@ class TwsGecko::MiIndex
     @data = @raw['data5'].map { |r| r.map { |i| i.delete(',') } }
   end
 
-    def raw_data
+  def raw_data
     content = HTTPClient.get_content(MIURL, query, header)
     @raw = json(content)
   rescue StandardError => e
@@ -41,10 +41,11 @@ class TwsGecko::MiIndex
     true
   end
 
-  def each_save
+  def each_save(h = {})
     data_ary = @data
     return false if data_ary.empty?
     data_ary.each do |row|
+      next if h[:listed] && (row[0].size > 4 || row[0][0] == '0')
       row = row_to_history(row)
       filename = "#{HISDIR}/#{row[0]}.csv"
       file_check filename
