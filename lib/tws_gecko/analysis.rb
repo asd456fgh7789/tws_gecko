@@ -8,7 +8,7 @@ module TwsGecko::Analysis
   EMADIR = (ANLYDIR + 'ema/').freeze
   KDDIR = (ANLYDIR + 'kd/').freeze
   
-  def self.sma(symbol, days = 5, h = {})
+  def self.sma_file(symbol, days = 5, h = {})
     queue = []
     array = []
     CSV.foreach(file(symbol)) do |line|
@@ -23,7 +23,7 @@ module TwsGecko::Analysis
     array
   end
 
-  def self.ema(symbol, days = 5, h = {})
+  def self.ema_file(symbol, days = 5, h = {})
     alpha = 2.0 / (days + 1)
     array = []
     CSV.foreach(file(symbol)) do |line|
@@ -40,7 +40,7 @@ module TwsGecko::Analysis
     array
   end
 
-  def self.kd(symbol, days = 9, h = {})
+  def self.kd_file(symbol, days = 9, h = {})
     queue = []
     array = []
     kd = [50, 50]
@@ -60,7 +60,7 @@ module TwsGecko::Analysis
     array
   end
 
-  def self.rsi(symbol, h = {})
+  def self.rsi_file(symbol, h = {})
     
   end
 
