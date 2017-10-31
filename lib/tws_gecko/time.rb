@@ -15,6 +15,6 @@ module TwsGecko::Time
   def self.open_now?
     return false unless TwsGecko::Date.open?(Date.parse(now.to_s))
     time = now.strftime("%H:%M")
-    (OPEN..CLOSE).cover? time || (AFHP == time)
+    ((OPEN..CLOSE).cover? time) || (AFHP == time)
   end
 end

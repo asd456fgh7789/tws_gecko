@@ -19,6 +19,7 @@ require 'tws_gecko/history'
 require 'tws_gecko/mi_index'
 require 'tws_gecko/industry_code'
 require 'tws_gecko/listed'
+require 'tws_gecko/analysis'
 
 require 'tws_gecko/date'
 require 'tws_gecko/time'

@@ -1,5 +1,5 @@
 require 'tws_gecko/crawler'
-require 'tws_gecko/log'
+require 'tws_gecko/file'
 require 'tws_gecko/log'
 
 class TwsGecko::MiIndex
