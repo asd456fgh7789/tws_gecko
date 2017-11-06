@@ -32,8 +32,8 @@ class TwsGecko::CompanyList
   end
   
   def self.update
-    msg = parse(File.read(RAWFILE))
-    writer(msg)
+    writer(parse(raw))
+    
   end
 
   class << self
