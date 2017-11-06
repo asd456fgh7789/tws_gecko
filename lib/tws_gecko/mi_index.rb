@@ -11,7 +11,7 @@ class TwsGecko::MiIndex
 
   DATADIR ||= TwsGecko::File::DATADIR.freeze
   HISDIR ||= TwsGecko::File::HISDIR.freeze
-  attr_reader :data, :raw
+  attr_reader :data, :raw, :date
 
   def initialize(date)
     @date = date
