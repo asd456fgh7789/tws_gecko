@@ -32,7 +32,6 @@ class TwsGecko::CompanyList
   end
   
   def self.update
-    raw unless File.exist? RAWFILE
     msg = parse(File.read(RAWFILE))
     writer(msg)
   end
