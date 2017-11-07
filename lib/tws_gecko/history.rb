@@ -39,7 +39,7 @@ class TwsGecko::History
       r.map {|i| i.delete(' ').delete(',') }
     end
   rescue TwsGecko::ServerNoResponseError => e
-    TwsGecko::Log.logging(e)
+    TwsGecko::Log.logging(e, @date, query)
   end
 
   def daily
