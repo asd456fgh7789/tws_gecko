@@ -35,7 +35,9 @@ class TwsGecko::History
   def monthly(month = @date.month)
     content = HTTPClient.get_content(STOCKURL, query(month), header)
     @raw = json(content)
-    @data << @raw['data'].map { |r| r.map { |i| i.delete(',') } }
+    @data << @raw['data'].map do |r| 
+      r.map {|i| i.delete(' ').delete(',') }
+    end
   rescue TwsGecko::ServerNoResponseError => e
     TwsGecko::Log.logging(e)
   end

@@ -26,3 +26,4 @@ require 'tws_gecko/time'
 
 require 'tws_gecko/exception'
 require 'tws_gecko/log'
+require 'tws_gecko/validation'
