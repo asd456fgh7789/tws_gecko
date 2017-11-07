@@ -73,14 +73,13 @@ class TwsGecko::MiIndex
     raise "stat: #{json['stat']}" if json['stat'] != 'OK'
     json
   end
-
   # given a row to Array [[symbol], [data]]
   def row_to_history(ary)
     [ ary[0], 
       ["%03d/%s" % [@date.year - 1911, @date.strftime("%m/%d")], 
         ary[2],
         ary[4..8],
-        ary[10],
+        ary[9].gsub(/<\/?[^>]*>/, "")  + ary[10],
         ary[3]
       ].flatten
     ]
