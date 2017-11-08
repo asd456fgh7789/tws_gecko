@@ -14,6 +14,11 @@ class TwsGecko::IndustryCode
     end
   end
 
+  def self.all_industry
+    generate unless File.exist? FILENAME
+    CSV.read(FILENAME).map {|i| i[1]}
+  end
+
   class << self
     private
     def generate
