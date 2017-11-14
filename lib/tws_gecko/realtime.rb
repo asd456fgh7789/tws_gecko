@@ -60,7 +60,9 @@ class TwsGecko::RealTime
     @raw.delete_if {|i| i.is_a? Array || i.nil? }
     @date = Date.parse(@raw[0]['msgArray'][0]['d']) if @raw
     @raw
-  rescue ThreadError, TwsGecko::ServerDatabaseError => e
+  rescue ThreadError, 
+         TwsGecko::ServerDatabaseError, 
+         TwsGecko::ServerNoResponseError => e
     TwsGecko::Log.logging(e)
   end
 
@@ -92,8 +94,7 @@ class TwsGecko::RealTime
       json
     end
 
-    def process(query, retries: 5)
-      try = 0
+    def process(query)
       begin
         clnt = HTTPClient.new
         update_cookie(clnt) if @@update_time - Time.now < -60
@@ -105,11 +106,8 @@ class TwsGecko::RealTime
         clnt.get(STOCKURL, PASSQUERY, header(custom_header))
         res = clnt.get_content(STOCKURL, query, header(custom_header))
         json(res)
-      rescue TwsGecko::ServerDatabaseError
-        raise if try > retries
-        try += 1
-        sleep 1
-        retry
+      rescue Errno::ENETUNREACH
+        raise TwsGecko::ServerNoResponseError
       end
     end
 

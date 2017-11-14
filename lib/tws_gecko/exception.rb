@@ -7,8 +7,7 @@ class TwsGecko::ServerDatabaseError < StandardError
 end
 
 class TwsGecko::ServerNoResponseError < StandardError
-  attr_reader
-  def initialize(raw)
+  def initialize(raw = nil)
     @raw = raw
     super "#{@raw['stat']}"
   end
