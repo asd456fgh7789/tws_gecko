@@ -11,7 +11,7 @@ module TwsGecko::Validation
       filepath = HISDIR + symbol.to_s + '.csv'
       file_check filepath
       arr = CSV.read(filepath)
-      return nil if arr.nil
+      return nil if arr.nil?
       d0 = d0 < Date.new(1992, 1, 4) ? Date.new(1992, 1, 4) : d0
       arr.uniq! {|i| i.first}
       d1 = arr.first.first.split('/').map(&:to_i)
