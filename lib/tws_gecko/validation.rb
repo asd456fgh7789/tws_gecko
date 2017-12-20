@@ -21,7 +21,7 @@ module TwsGecko::Validation
         
         date_arr.each do |d|
           c = TwsGecko::History.new(symbol, d)
-          c.monthly
+          next if c.monthly.nil?
           data_arr << c.data.flatten(1)
           sleep rand * 10 
         end
