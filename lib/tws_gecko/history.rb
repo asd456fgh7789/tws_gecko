@@ -38,8 +38,9 @@ class TwsGecko::History
     @data << @raw['data'].map do |r| 
       r.map {|i| i.delete(' ').delete(',') }
     end
+    @data.flatten!(1) if @data.size == 1
   rescue TwsGecko::ServerNoResponseError => e
-    TwsGecko::Log.logging(e, @date, query)
+    TwsGecko::Log.logging(e, @date, STOCKURL+query(month))
   end
 
   def daily
@@ -48,21 +49,18 @@ class TwsGecko::History
     end
   end
 
-  def yearly
-    (1..12).each do |i|
-      monthly(i)
-      sleep 1
-    end
-    @data = @data.flatten(1)
-  end
-
   def save
     return false if @data.nil?
     filename = HISDIR + "#{@symbol}.csv"
     file_check filename
     line = lastline filename
-    if line[0] != @data[-1][0]
-      CSV.open(filename, 'a') { |csv| @data.each { |i| csv << i } }
+    if line[0] != @data[0][0]
+      CSV.open(filename, 'a') do |csv|
+        @data.each do |i|
+          i[7].tr!('+', '')
+          csv << i
+        end
+      end
     end
     true
   end
@@ -70,7 +68,7 @@ class TwsGecko::History
   private
   def query(month = @date.month)
     date = "%d%02d%02d" % [@date.year, month, @date.day]
-    "date=#{date}&response=json&stockNo=#{@symbol}"
+    "response=json&date=#{date}&stockNo=#{@symbol}"
   end
 
   def json(msg)
@@ -80,3 +78,6 @@ class TwsGecko::History
   end
 
 end
+
+#http://www.twse.com.tw/exchangeReport/STOCK_DAY?date=20180222&response=json&stockNo=1011
+#http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20180222&stockNo=1101
